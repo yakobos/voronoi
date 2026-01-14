@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive Voronoi Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="map"></div>
+    <div class="info-panel">
+        <strong>Interactive Voronoi Map</strong><br>
+        Click map to add a point<br>
+        Click a point to delete it<br>
+        Shift+click polygon to select, then A-Z<br>
+        Points: <span id="point-count">0</span><br>
+        <small>(Need 4+ points for Voronoi)</small>
+        <div id="selected-info" class="selected-info" style="display:none;">
+            <strong>Selected Polygon:</strong><br>
+            Category: <span id="selected-category">None</span>
+            <span id="category-badge" class="category-badge" style="display:none;"></span><br>
+            <small>Press A-Z to assign, ESC to deselect</small>
+        </div>
+    </div>
+    
+    <script>
+        var initialPoints = {{ points | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/map.js') }}"></script>
+</body>
+</html>
